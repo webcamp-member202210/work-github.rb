@@ -3,6 +3,14 @@
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   before_action :customer_state, only: [:create]
+  
+  def new
+    @customer =Customer.new
+  end
+  
+  def show
+    @customer = Customer.find(params[:id])
+  end
 
   # GET /resource/sign_in
   # def new
