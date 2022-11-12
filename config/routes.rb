@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    get 'items/index'
-    get 'items/new'
-    get 'items/create'
-    get 'items/show'
-    get 'items/edit'
-    get 'items/update'
+    resources :genres, only: [:index, :create, :edit, :update]
   end
+  namespace :admin do
+    resources :items
+  end
+  
   get 'customers/show'
   get 'customers/edit'
   get 'customers/update'

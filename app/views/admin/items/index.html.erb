@@ -7,6 +7,7 @@
   
     <div class="col-md-8 offset-md-1">
       <h2>商品一覧</h2>
+      <%= link_to "+", new_admin_item_path %>
       <table class="table">
         <thead>
           <tr>
@@ -19,12 +20,17 @@
         </thead>
         
         <tbody>
-          <%= @items.each do |book| %>
+          <% @items.each do |item| %>
             <tr>
+              <td><%= item.id %></td>
               <td>
-                <%= link_to
+                <%= link_to item.name, public_item_path(item.id) %>
               </td>
+              <td><%= item.price %></td>
+      
+              <td><%= item.is_active %></td>
             </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
