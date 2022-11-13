@@ -1,2 +1,49 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<h2>商品編集</h2>
+
+<% if @item.errors.any? %>
+  <h2><%= @item.errors.count %> 件のエラーが発生しました。</h2>
+  <ul>
+    <% @item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @item, url: admin_item_path(@item.id) do |f| %>
+
+  <div>
+    <h3>商品画像</h3>
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
+
+  <div>
+    <h3>商品名</h3>
+    <%= f.text_field :name, placeholder: "商品名" %>
+  </div>
+
+  <div>
+    <h3>商品説明</h3>
+    <%= f.text_area :introduction, placeholder: "ここに説明文を記載します" %>
+  </div>
+
+  <div>
+    <h3>ジャンル</h3>
+    <%= f.select :genre_id, @genres.map {|genre| [ genre.name, genre.id ]} %>
+  </div>
+
+  <div>
+    <h3>税抜価格</h3>
+    <%= f.number_field :price, placeholder: "1000" %>
+  </div>
+
+  <div>
+    <h3>販売ステータス</h3>
+    <%= f.radio_button :is_active, :true %>
+    <%= f.label :is_active, "販売中" %>
+    <%= f.radio_button :is_active, :false %>
+    <%= f.label :is_active, "販売停止" %>
+  </div>
+
+  <%= f.submit "変更を保存" %>
+
+<% end %>

@@ -1,5 +1,14 @@
 <h1>商品新規登録</h1>
 
+<% if @item.errors.any? %>
+  <h2><%= @item.errors.count %> 件のエラーが発生しました。</h2>
+  <ul>
+    <% @item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @item, url: admin_items_path do |f| %>
   <div>
     <h3>商品画像</h3>
@@ -25,7 +34,7 @@
     <h3>税抜価格</h3>
     <%= f.number_field :price, placeholder: "1000" %>
   </div>
-  
+
   <div>
     <h3>販売ステータス</h3>
     <%= f.radio_button :is_active, :true %>
@@ -33,7 +42,7 @@
     <%= f.radio_button :is_active, :false %>
     <%= f.label :is_active, "販売停止" %>
   </div>
-  
+
   <%= f.submit "新規登録" %>
 
 <% end %>

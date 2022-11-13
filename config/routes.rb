@@ -2,14 +2,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
-  end
-  namespace :admin do
     resources :items
+    resources :customers, only: [:show, :edit, :update, :index]
+    resources :orders, only: [:show, :update]
   end
   
-  get 'customers/show'
-  get 'customers/edit'
-  get 'customers/update'
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
