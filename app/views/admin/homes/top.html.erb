@@ -1,7 +1,6 @@
 <h2>注文履歴一覧</h2>
 
   
-<% end %>
 
 <table>
   <thead>
@@ -14,11 +13,12 @@
   </thead>
   <tbody>
   <% @orders.each do |order| %>
-  <% @items.each do |item| %>
+
     <tr>
       <td><%= link_to order.created_at, admin_order_path(order.id) %></td>
-      <td><%= order.last_name %><%= customer.first_name %></td>
+      <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
       <td></td>
     </tr>
+  <% end %>
   </tbody>
 </table>

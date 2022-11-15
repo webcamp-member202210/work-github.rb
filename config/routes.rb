@@ -21,9 +21,20 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :items, only: [:index, :show]
+    resources :homes, only: [:top, :about]
+    resources :registrations, only: [:new, :create]
+    resources :sessions, only: [:new, :create, :destroy]
+    resources :customers, only: [:show, :edit, :update]
+    resources :cart_items, only: [:index, :update, :destroy, :create]
+    resources :orders, only: [:new, :create, :index, :show]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    root to: "homes#top"
+    get "customers/unsubscribe"
+    patch "customers/withdrawal"
+    delete "cart_items/destroy_all"
+    post "orders/confirm"
+    get "orders/thanks"
   end
-  get 'homes/about'
-  get 'homes/top'
-  root to: "homes#top"
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
