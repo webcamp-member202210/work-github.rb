@@ -8,7 +8,7 @@
     <tr>
     <% @genres.each do |genre| %>
       <td>
-      <%= link_to public_items_path do %>
+      <%= link_to items_path do %>
         <%= genre.name %>
       <% end %>
       </td>
@@ -29,9 +29,10 @@
 
 <% @items.each do |item| %>
   <div>
-    <%= link_to public_item_path(item.id) do %>
-      <%= image_tag item.image(100, 100) %>
+    <%= link_to item_path(item.id) do %>
+      <%= image_tag item.image %>
     <% end %>
   </div>
   <h2><%= item.name %></h2>
   <h2>¥<%= item.price.to_s(:delimited) %></h2>
+  <% end %>

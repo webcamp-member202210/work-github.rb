@@ -5,7 +5,7 @@ class Admin::SessionsController < Devise::SessionsController
 
   
   def after_sign_in_path_for(resource)
-    admin_items_index_path
+    admin_items_path
   end
   # GET /resource/sign_in
   # def new
@@ -32,4 +32,9 @@ class Admin::SessionsController < Devise::SessionsController
     @admin = Admin.new
   end
   
+  def create
+  end
+  
+  def destroy
+  end
 end

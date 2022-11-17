@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WorkGithub</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Work-Github</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -12,12 +12,12 @@
 
   <body>
     <header>
-        <div class="container">
+        <div class="navbar">
           <span><%= link_to "LOGO", root_path, class:"navbar-brand" %></span>
         </div>
         <div class="row">
-          <div class="col"><%= link_to "About", homes_about_path, class:"navbar-brand" %></div>
-          <div class="col"><%= link_to "商品一覧", public_items_path, class:"navbar-brand" %> </div>
+          <div class="col"><%= link_to "About", homes_about_path, class:"btn btn_green" %></div>
+          <div class="col"><%= link_to "商品一覧", items_path, class:"navbar-brand" %> </div>
           <div class="col"><%= link_to "新規登録", new_customer_registration_path, class:"navbar-brand" %></div>
           <div class="col"><%= link_to "ログイン", new_customer_session_path, class:"navbar-brand" %></div>
         </div>

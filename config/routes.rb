@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-  namespace :public do
+  scope module: :public do
     resources :items, only: [:index, :show]
     resources :homes, only: [:top, :about]
     resources :registrations, only: [:new, :create]
@@ -29,12 +29,13 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :create, :index, :show]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     root to: "homes#top"
+    get "homes/about"
     get "customers/unsubscribe"
     patch "customers/withdrawal"
     delete "cart_items/destroy_all"
     post "orders/confirm"
     get "orders/thanks"
   end
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,4 +1,5 @@
-<h2>Sign up</h2>
+<p id="notice"></p>
+<h2>新規会員登録</h2>
 <% if @customer.errors.any? %>
   <h2><%= @customer.errors.count %> 件のエラーが発生しました。</h2>
   <ul>
@@ -11,58 +12,67 @@
 <%= form_with model: @customer, url: customer_registration_path do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :last_name, "(姓)" %>
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "name" %>
-  </div>
+<table>
+  <tr>
+    <th>名前</th>
+    <td>
+      <%= f.label :last_name, "(姓)" %>
+      <%= f.text_field :last_name, autofocus: true, autocomplete: "name" %>
+    <td>
+      <%= f.label :first_name, "(名)" %>
+      <%= f.text_field :first_name %>
+    </td>
+    </td>
+  </tr>
+  <tr>
+    <th>フリガナ</th>
+    <td>
+      <%= f.label :last_name_kana, "(セイ)" %>
+      <%= f.text_field :last_name_kana %>
+    </td>
+    <td>
+      <%= f.label :first_name_kana, "(メイ)" %>
+      <%= f.text_field :first_name_kana %>
+    </td>
+  </tr>
+  <tr>
+    <th>メールアドレス</th>
+    <td>
+      <%= f.email_field :email %>
+    </td>
+  </tr>
+  <tr>
+    <th>郵便番号(ハイフンなし)</th>
+    <td>
+      <%= f.text_field :postal_code %>
+    </td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td>
+      <%= f.text_field :address %>
+    </td>
+  </tr>
+  <tr>
+    <th>電話番号(ハイフンなし)</th>
+    <td>
+      <%= f.number_field :telephone_number %>      
+    </td>
+  </tr>
+  <tr>
+    <th>パスワード(6文字以上）</th>
+    <td>
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </td>
+  </tr>
+  <tr>
+    <th>パスワード(確認用)</th>
+    <td>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </td>
+  </tr>
+</table>
 
-  <div class="field">
-    <%= f.label :first_name, "(名)" %>
-    <%= f.text_field :first_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name_kana, "(セイ)" %>
-    <%= f.text_field :last_name_kana %>
-  </div>
-
-  <div class="field">
-    <%= f.label :first_name_kana, "(メイ)" %>
-    <%= f.text_field :first_name_kana %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %>
-    <%= f.email_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :postal_code, "郵便番号" %>
-    <%= f.text_field :postal_code %>
-  </div>
-
-  <div class="field" %>
-    <%= f.label :address, "住所" %>
-    <%= f.text_field :address %>
-  </div>
-
-  <div class="field" %>
-    <%= f.label :telephone_number, "電話番号" %>
-    <%= f.number_field :telephone_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password, "パスワード" %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %>文字以上 )</em>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "パスワード(確認用)" %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
   <div class="actions">
     <%= f.submit "新規登録" %>

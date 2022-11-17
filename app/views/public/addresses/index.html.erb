@@ -1,0 +1,35 @@
+<h2>配送先登録/一覧</h2>
+
+<%= form_with model: @address, url: public_addresses_path do |f| %>
+<table>
+  <tr>
+    <th>郵便局(ハイフンなし)</th><td><%= f.text_field :postal_code、autocomplete: "0000000" %></td>
+  </tr>
+  <tr>
+    <th>住所</th><td><%= f.text_field :address, autocomplete: "東京都渋谷区代々木神園町0-0" %></td>
+  </tr>
+  <tr>
+    <th>宛名</th><td><%= f.text_field :name, autocomplete: "令和道子" %></td>
+  </tr>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>郵便番号</th>
+      <th>住所宛名</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <%= @addresses.each do |address|  %>
+      <td><%= address.postal_code %></td>
+      <td><%= address.address %></td>
+      <td><%= address.name %></td>
+      <td><%= link_to "編集する", edit_public_address %></td>
+      <td><%= link_to "削除する", public_address_path, method: :delete %></td>
+    <% end %>
+    </tr>
+  </tbody>
+</table>
