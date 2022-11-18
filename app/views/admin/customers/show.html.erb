@@ -18,12 +18,12 @@
   </tr>
   <tr>
     <th>会員ステータス</th>
-    <%= if @customer.is_deleted == false %>
+    <% if @customer.is_deleted == false %>
       <td>有効</td>
-    <%= else %>
+    <% else %>
       <td>退会</td>
     <% end %>
   </tr>
-  <%= link_to "編集する", admin_customer_path(@customer.id) %>
-  <%= link_to "注文履歴一覧", 
+  <%= link_to "編集する", edit_admin_customer_path(@customer.id) %>
+  <%= link_to "注文履歴一覧", admin_homes_top_path %>
 </table>
