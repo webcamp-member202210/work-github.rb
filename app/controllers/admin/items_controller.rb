@@ -13,8 +13,6 @@ class Admin::ItemsController < ApplicationController
     if @item.save
       flash[:notice] = "商品登録完了しました。"
       redirect_to admin_item_path(@item)
-    else
-      render :new
     end
   end
 
