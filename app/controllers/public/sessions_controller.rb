@@ -3,28 +3,17 @@
 class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   before_action :customer_state, only: [:create]
-  
+  before_action :move_to_signed_in, except: [:new]
+
+
   def after_sign_in_path_for(resource)
     items_path
   end
-  
-  def new
-    @customer =Customer.new
+
+  def after_sign_out_path_for(resource)
+    root_path
   end
-  
-  def show
-    @customer = Customer.find(params[:id])
-  end
-  
-  def create
-    customer = Customer.find_by(email: params[:customer][:email])
-    if customer
-      redirect_to items_path
-    else
-      flash[:notice] ="ログインに失敗しました。"
-      render :new
-    end
-  end
+
 
   # GET /resource/sign_in
   # def new
@@ -48,7 +37,7 @@ class Public::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   protected
-  
+
   def customer_state
     @customer = Customer.find_by(email: params[:customer][:email])
     return if !@customer
@@ -57,5 +46,11 @@ class Public::SessionsController < Devise::SessionsController
       redirect_to new_customer_registration_path
     end
   end
-  
+
+  def move_to_signed_in
+    unless customer_signed_in?
+      redirect_to new_customer_session
+    end
+  end
+
 end
