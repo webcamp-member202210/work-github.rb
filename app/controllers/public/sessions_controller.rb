@@ -49,7 +49,7 @@ class Public::SessionsController < Devise::SessionsController
 
   def move_to_signed_in
     unless customer_signed_in?
-      redirect_to new_customer_session
+      redirect_to new_customer_session_path
     end
   end
 

@@ -33,15 +33,6 @@ class Admin::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  def new
-    @admin = Admin.new
-  end
-  
-  def create
-  end
-  
-  def destroy
-  end
   
   protected
   

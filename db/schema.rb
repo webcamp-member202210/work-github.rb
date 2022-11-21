@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 2022_11_08_124016) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "amount"
+    t.integer "item_id"
+    t.integer "customer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -80,9 +82,9 @@ ActiveRecord::Schema.define(version: 2022_11_08_124016) do
     t.string "postal_code"
     t.string "address"
     t.string "telephone_number"
+    t.boolean "is_deleted", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "is_deleted", default: false
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end

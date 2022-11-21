@@ -33,8 +33,9 @@
   <tr>
     <th></th>
     <td>
-    <%= form_with model: @cart_item, url: cart_items_path do |f| %>
-      <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10] %>
+    <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+      <%= f.select :amount, *[1..10] %>
+      <%= f.hidden_field :item_id, :value => @item.id %>
       <%= f.submit "カートに入れる" %>
     <% end %>
     </td>

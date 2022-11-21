@@ -1,6 +1,8 @@
 class Admin::ItemsController < ApplicationController
+  before_action :admin_signed_in
+
   def index
-    @items = Item.all
+    @items = Item.page(params[:page])
   end
 
   def new
@@ -41,5 +43,11 @@ class Admin::ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :introduction, :price, :is_active, :image, :genre_id)
+  end
+
+  def admin_signed_in
+    unless admin_signed_in?
+      redirect_to new_admin_session_path
+    end
   end
 end
