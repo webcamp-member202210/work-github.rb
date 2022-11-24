@@ -1,9 +1,9 @@
 <p id="notice"></p>
 
-<h2>会員情報収集</h2>
+<h2>会員情報編集</h2>
 
 <table>
-  <%= form_with model: @customer, url: customer_path do |f| %>
+  <%= form_with model: @customer, url: update_customer_path, method: :patch do |f| %>
   <tr>
     <th>氏名</th>
     <td><%= f.text_field :last_name %> <%= f.text_field :first_name %></td>
