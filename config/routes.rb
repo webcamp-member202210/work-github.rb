@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
 
   scope module: :public do
+    get "orders/thanks"
     get "customers/unsubscribe"
     post "orders/confirm/view" => "orders#confirm", as:"orders_confirm"
     resources :items, only: [:index, :show]
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
     patch "customers/withdrawal"
     delete "cart_items/destroy_all"
 
-    get "orders/thanks"
+    
   end
 
     devise_for :customers, skip: [:passwords], controllers: {

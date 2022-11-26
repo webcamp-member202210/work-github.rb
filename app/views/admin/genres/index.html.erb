@@ -1,5 +1,13 @@
 <div><h1>ジャンル一覧・追加</h1></div>
-
+<%= flash[:notice] %>
+<% if @genre.errors.any? %>
+  <h2><%= @genre.errors.count %> 件のエラーが発生しました。</h2>
+  <ul>
+    <% @genre.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_with model: @genre, url:admin_genres_path do |f| %>
   <div>
     <h3>ジャンル名</h3>

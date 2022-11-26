@@ -15,7 +15,7 @@
   <%= f.radio_button :select_address, "2" %>
   <%= f.label :select_address, "新しいお届け先" %>
   郵便番号(ハイフンなし)<%= f.text_field :postal_code %>
-  住所<%= f.text_field :address %>
+  住所<%= f.text_field :address_code %>
   宛名<%= f.text_field :name %>
   <%= f.submit "確認画面へ進む" %>
 <% end %>

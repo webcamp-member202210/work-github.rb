@@ -1,5 +1,12 @@
 <h3>ジャンル編集</h3>
-
+<% if @genre.errors.any? %>
+  <h2><%= @genre.errors.count %> 件のエラーが発生しました。</h2>
+  <ul>
+    <% @genre.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <div>
   <%= form_with model: @genre, url: admin_genre_path do |f| %>
     <h3>ジャンル名</h3>

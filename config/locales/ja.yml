@@ -4,3 +4,43 @@ ja:
       payment_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
+      
+      status:
+        waiting: "入金待ち"
+        confirm: "入金確認中"
+        production: "製作中"
+        preparation: "発送準備中"
+        sent: "発送済み"
+        
+  activerecord:
+    models:
+      item: "商品"
+    attributes:
+      item:
+        image: "商品の画像"
+        name: "商品名"
+        introduction: "商品の説明"
+        price: "商品の値段"
+        
+    models:
+      genre: "ジャンル"
+    attributes:
+      genre:
+        name: "ジャンル名"
+        
+    models:
+      customer: "顧客"
+    attributes:
+      customer:
+        last_name: "姓"
+        first_name: "名"
+        last_name_kana: "姓カナ"
+        first_name_kana: "名カナ"
+        email: "メールアドレス"
+        encrypted_password: "パスワード"
+        postal_code: "郵便番号"
+        address: "住所"
+        telephone_number: "電話番号"
+        
+        
+    

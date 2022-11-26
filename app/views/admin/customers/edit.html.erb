@@ -1,8 +1,17 @@
 
 <h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h2>
+<%= flash[:notice] %>
+<% if @customer.errors.any? %>
+  <h2><%= @customer.errors.count %> 件のエラーが発生しました。</h2>
+  <ul>
+    <% @customer.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
+<%= form_with model: @customer, url: admin_customer_path(@customer.id) do |f| %>
 <table>
-  <%= form_with model: @customer, url: admin_customer_path(@customer.id) do |f| %>
   <tr>
     <th>会員ID</th><td><%= @customer.id %></td>
   </tr>
@@ -36,5 +45,5 @@
 
 </table>
 
-<div><%= f.submit "変更を保存" %></div>
+    <div><%= f.submit "変更を保存" %></div>
 <% end %>
