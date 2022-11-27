@@ -20,7 +20,7 @@ class Public::CustomersController < ApplicationController
 
   def withdrawal
     @customer = current_customer
-    @user.update(is_deleted: true)
+    @customer.update(is_deleted: true)
     reset_session
     flash[:notice] = "退会を実行しました"
     redirect_to root_path

@@ -12,9 +12,13 @@ ja:
         preparation: "発送準備中"
         sent: "発送済み"
         
+      making_status:
+        cannot_manufactured: "製作不可"
+        waiting: "製作待ち"
+        production: "製作中"
+        complete: "製作完了"
+        
   activerecord:
-    models:
-      item: "商品"
     attributes:
       item:
         image: "商品の画像"
@@ -22,15 +26,9 @@ ja:
         introduction: "商品の説明"
         price: "商品の値段"
         
-    models:
-      genre: "ジャンル"
-    attributes:
       genre:
         name: "ジャンル名"
         
-    models:
-      customer: "顧客"
-    attributes:
       customer:
         last_name: "姓"
         first_name: "名"

@@ -1,13 +1,5 @@
 <p id="notice"></p>
 <h2>新規会員登録</h2>
-<% if @customer.errors.any? %>
-  <h2><%= @customer.errors.count %> 件のエラーが発生しました。</h2>
-  <ul>
-    <% @customer.errors.full_message.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
 
 <%= form_with model: @customer, url: customer_registration_path do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
@@ -56,7 +48,7 @@
   <tr>
     <th>電話番号(ハイフンなし)</th>
     <td>
-      <%= f.number_field :telephone_number %>      
+      <%= f.number_field :telephone_number %>
     </td>
   </tr>
   <tr>

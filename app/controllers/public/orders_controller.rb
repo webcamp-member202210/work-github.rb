@@ -13,7 +13,20 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @cart_items = current_customer.cart_items.all
+    @tax = 1.1
+ 
     if @order.save
+      @cart_items.each do |cart_item|
+        @order_detail = OrderDetail.new
+        @order_detail.item_id = cart_item.item_id
+        @order_detail.order_id = @order.id
+        @order_detail.price = cart_item.item.price*@tax
+        @order_detail.amount = cart_item.amount
+        @order_detail.making_status = 0
+        @order_detail.save
+      end
+      @cart_items.delete_all
       flash[:notice] = "注文完了しました"
       redirect_to orders_thanks_path
     else
@@ -34,7 +47,7 @@ class Public::OrdersController < ApplicationController
       @total_price += cart_item.item.price*cart_item.amount
     end
     @total_price *= @tax
-    @bill = @postage + @tax
+    @bill = @postage + @total_price
     if params[:order][:select_address] == "0"
       @order = Order.new(order_params)
       @order.postal_code = current_customer.postal_code
@@ -57,5 +70,9 @@ class Public::OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:customer_id, :postal_code, :address_code, :name, :postage, :bill, :payment_method, :status)
+  end
+
+  def order_detail_params
+    params.require(:order_detail).permit(:item_id, :order_id, :price, :amount, :making_status)
   end
 end
