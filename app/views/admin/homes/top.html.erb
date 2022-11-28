@@ -1,6 +1,6 @@
 <h2>注文履歴一覧</h2>
 
-  
+
 
 <table>
   <thead>
@@ -13,11 +13,18 @@
   </thead>
   <tbody>
   <% @orders.each do |order| %>
-
     <tr>
-      <td><%= link_to order.created_at, admin_order_path(order.id) %></td>
+      <td>
+        <%= link_to admin_order_path(order.id) do %>
+         <%= l order.created_at, format: :default %>
+        <% end %>
+      </td>
       <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
-      <td></td>
+      <% @order_details.each do |order_detail| %>
+        <% if order_detail.order_id == order.id %>
+          <td><%= order_detail.amount %></td>
+        <% end %>
+      <% end %>
     </tr>
   <% end %>
   </tbody>

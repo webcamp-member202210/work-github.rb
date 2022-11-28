@@ -3,14 +3,63 @@
 <h3>注文情報</h3>
 <table>
   <tr>
-    <th>注文日</th><td><%= @order.created_at %></td>
+    <th>注文日</th><td><%= l @order.created_at, format: :short %></td>
   </tr>
   <tr>
-    <th>配送先</th><td><%= @order.postal_code %><br><%= @order.address %><br><%= @order.name %></td>
+    <th>配送先</th><td><%= @order.postal_code %><br><%= @order.address_code %><br><%= @order.name %></td>
   </tr>
   <tr>
     <th>支払方法</th>
     <td>
+      <% if @order.payment_method == "credit_card" %>
+        クレジットカード
+      <% else %>
+        銀行振込
+      <% end %>
+    </td>
+    <th>ステータス</th>
+    <td>
+      <% if @order.status == "waiting" %>
+        入金待ち
+      <% elsif @order.status == "confirm" %>
+        入金確認
+      <% elsif @order.status == "production" %>
+        製作中
+      <% elsif @order.status == "preparation" %>
+        発送準備中
+      <% else %>
+        発送済み
+      <% end %>
     </td>
   </tr>
+</table>
+<h3>請求情報</h3>
+<table>
+  <tr>
+    <tH>商品合計</tH><td><%= @order.bill-@order.postage %></td>
+  </tr>
+  <tr>
+    <th>配送先</th><td><%= @order.postage %></td>
+  </tr>
+  <tr>
+    <th>ご請求額</th><td><%= @order.bill %></td>
+  </tr>
+</table>
+
+<h3>注文内容</h3>
+<table>
+  <tr>
+    <th>商品</th>
+    <th>単価 (税込)</th>
+    <th>個数</th>
+    <th>小計</th>
+  </tr>
+  <% @order.order_details.each do |order_detail| %>
+  <tr>
+    <td><%= order_detail.item.name %></td>
+    <td><%= order_detail.price %></td>
+    <td><%= order_detail.amount %></td>
+    <td><%= order_detail.price*order_detail.amount %></td>
+  </tr>
+  <% end %>
 </table>
