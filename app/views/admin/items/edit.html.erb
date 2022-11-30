@@ -10,10 +10,13 @@
   </ul>
 <% end %>
 <%= form_with model: @item, url: admin_item_path(@item.id) do |f| %>
+<div class="container">
+  <table>
+    <tr>
+      <th>商品画像</th><td><%= f.file_field :image, accept: "image/*" %></td>
+    </tr>
+    <h3>像</h3>
 
-  <div>
-    <h3>商品画像</h3>
-    <%= f.file_field :image, accept: "image/*" %>
   </div>
 
   <div>
@@ -42,7 +45,8 @@
     <%= f.label :is_active, "販売中" %>
     <%= f.radio_button :is_active, :false %>
     <%= f.label :is_active, "販売停止中" %>
-  </div>
+  </table>
 
   <%= f.submit "変更を保存" %>
+</div>
 <% end %>

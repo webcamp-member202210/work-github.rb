@@ -1,1 +1,8 @@
 <%= flash[:notice] %>
+<h2>商品一覧(全<%= @items.count %>件)</h2>
+<% @items_page.each do |item| %>
+  <div><%= image_tag item.image %></div>
+  <div><%= item.name %></div>
+  <div>¥<%= item.price.to_s(:delimited) %></div>
+<% end %>
+<%= paginate @items_page %>
