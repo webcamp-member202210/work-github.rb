@@ -4,20 +4,21 @@ ja:
       payment_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
-      
+
       status:
         waiting: "入金待ち"
         confirm: "入金確認中"
         production: "製作中"
         preparation: "発送準備中"
         sent: "発送済み"
-        
+
+    order_detail:
       making_status:
         cannot_manufactured: "製作不可"
         waiting: "製作待ち"
         production: "製作中"
         complete: "製作完了"
-        
+
   activerecord:
     attributes:
       item:
@@ -25,10 +26,10 @@ ja:
         name: "商品名"
         introduction: "商品の説明"
         price: "商品の値段"
-        
+
       genre:
         name: "ジャンル名"
-        
+
       customer:
         last_name: "姓"
         first_name: "名"
@@ -39,11 +40,10 @@ ja:
         postal_code: "郵便番号"
         address: "住所"
         telephone_number: "電話番号"
-        
+
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
       short: "%Y/%m/%d"
-        
-        
-    
+
+

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'homes/top'
   end
   namespace :admin do
+    patch "order_details/:id" => "order_details#update", as:"order_details_update"
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items
     resources :customers, only: [:show, :edit, :update, :index]

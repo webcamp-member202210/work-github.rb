@@ -1,5 +1,5 @@
 <h2>注文履歴一覧</h2>
-
+<%= flash[:notice] %>
 
 <div class="container" style="width: 60%">
   <div class="align-items-center justify-content-center">
@@ -28,17 +28,7 @@
               <%= order.order_details.sum(:amount) %>
             </td>
             <td>
-            <% if order.status == "waiting" %>
-              入金待ち
-            <% elsif order.status == "confirm" %>
-              入金確認
-            <% elsif order.status == "production" %>
-              製作中
-            <% elsif order.status == "preparation" %>
-              発送準備中
-            <% else %>
-              発送済み
-            <% end %>
+            <%= order.status_i18n %>
             </td>
           </tr>
         <% end %>
