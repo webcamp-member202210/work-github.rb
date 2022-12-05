@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
 
   scope module: :public do
+    delete "cart_items/destroy_all"
     get "orders/thanks"
     get "customers/unsubscribe"
     post "orders/confirm/view" => "orders#confirm", as:"orders_confirm"
@@ -31,7 +32,6 @@ Rails.application.routes.draw do
     patch "customers" => "customers#update", as:"update_customer"
     get "customers/edit/current" => "customers#edit", as:"edit_customer"
     patch "customers/withdrawal"
-    delete "cart_items/destroy_all"
 
     
   end

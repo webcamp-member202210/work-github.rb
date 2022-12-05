@@ -4,7 +4,7 @@ class Public::OrdersController < ApplicationController
     @addresses = Address.all
     @order = Order.new
   end
-  
+
   def destroy
     @order = Order.find(params[:id])
     @order.delete
@@ -22,7 +22,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @cart_items = current_customer.cart_items.all
     @tax = 1.1
- 
+
     if @order.save
       @cart_items.each do |cart_item|
         @order_detail = OrderDetail.new
@@ -55,12 +55,14 @@ class Public::OrdersController < ApplicationController
     end
     @total_price *= @tax
     @bill = @postage + @total_price
+    
     if params[:order][:select_address] == "0"
       @order = Order.new(order_params)
       @order.postal_code = current_customer.postal_code
       @order.address_code = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
     end
+
     if params[:order][:select_address] == "1"
       @order = Order.new(order_params)
       @address = Address.find(params[:order][:address_id])
@@ -68,8 +70,14 @@ class Public::OrdersController < ApplicationController
       @order.address_code = @address.address
       @order.name = @address.name
     end
+
     if params[:order][:select_address] == "2"
       @order = Order.new(order_params)
+    end
+    
+    if params[:order][:select_address] == ""
+      @order = Order.new(order_params)
+      render :new
     end
   end
 

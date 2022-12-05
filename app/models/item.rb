@@ -12,7 +12,7 @@ class Item < ApplicationRecord
 
 
 
-  def get_image(width, height)
+  def get_image
     image
   end
 end

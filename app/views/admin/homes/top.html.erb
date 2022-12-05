@@ -1,5 +1,9 @@
-<h2>注文履歴一覧</h2>
-<%= flash[:notice] %>
+<div class="container d-flex mt-4 mb-4">
+  <h4 class="bg-light">注文履歴一覧</h4>
+</div>
+<div>
+  <%= flash[:notice] %>
+</div>
 
 <div class="container" style="width: 60%">
   <div class="align-items-center justify-content-center">
@@ -19,7 +23,7 @@
             <td>
               <U>
                 <%= link_to admin_order_path(order.id) do %>
-                  <%= l order.created_at, format: :default, class: "nav-link text-dark underline" %>
+                  <u class="text-dark"><%= l order.created_at, format: :default %></u>
                 <% end %>
               </U>
             </td>

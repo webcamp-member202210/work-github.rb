@@ -1,44 +1,36 @@
 <p id="notice"></p>
+<div class="container">
+  <% if @cart_item.errors.any? %>
+    <h2><%= @cart_item.errors.count %> 件のエラーが発生しました。</h2>
+    <ul>
+      <% @cart_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
 
-<% if @cart_item.errors.any? %>
-  <h2><%= @cart_item.errors.count %> 件のエラーが発生しました。</h2>
-  <ul>
-    <% @cart_item.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-<table>
-  <thead>
-    <th>ジャンル検索</th>
-  </thead>
-  <tbody>
-    <td>
-    <% @genres.each do |genre| %>
-      <%= genre.name %>
-    <% end %>
-    </td>
-  </tbody>
-</table>
-
-<table>
-  <tr>
-    <th><%= image_tag @item.image %></th>
-    <td>
-      <%= @item.name %><br>
-      <%= @item.introduction %><br>
-      ￥<%= @tax.to_s(:delimited) %> (税込)
-    </td>
-  </tr>
-  <tr>
-    <th></th>
-    <td>
-    <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
-      <%= f.select :amount, *[1..10] %>
-      <%= f.hidden_field :item_id, :value => @item.id %>
-      <%= f.submit "カートに入れる" %>
-    <% end %>
-    </td>
-  </tr>
-</table>
+<div class="container mt-4" style="width: 90%">
+  <div class="row">
+    <div class="col-4 d-flex">
+      <%= image_tag @item.image, size: "250x180"%>
+    </div>
+    <div class="col-7">
+      <div class="mb-3">
+        <h4><strong><%= @item.name %></strong></h4>
+      </div>
+      <div class="mb-5">
+        <h5><%= @item.introduction %></h5>
+      </div>    
+      <div class="pt-4 d-flex align-items-end">
+        <h4><strong>￥<%= @tax.to_s(:delimited) %></strong></h4><h6>(税込)</h6>
+      </div>
+      <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+        <%= f.select :amount, *[1..10], { include_blank: '個数選択　　'} %>　　
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.submit "カートに入れる", class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>
 

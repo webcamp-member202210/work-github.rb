@@ -1,14 +1,14 @@
 <p id="notice"></p>
 <main>
-  <div class="row">
-    <h2>会員一覧</h2>
+  <div class="container mb-4 mt-4 d-flex">
+    <h4 class="bg-light">会員一覧</h4>
   </div>
   <%= flash[:notice] %>
   
-  <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+  <div class="container" style="width: 70%">
     <table class="table">
       <thead>
-        <tr>
+        <tr class="thead-light">
           <th>会員ID</th>
           <th>氏名</th>
           <th>メールアドレス</th>
@@ -22,16 +22,17 @@
             <td><%= customer.id %></td>
             <td>
               <%= link_to admin_customer_path(customer.id) do %>
+              <u class="text-dark">
                 <%= customer.last_name %>
                 <%= customer.first_name %>
+              </u>
               <% end %>
             </td>
             <td><%= customer.email %></td>
-            <td>
               <% if customer.is_deleted == false %>
-                <h3>有効</h3>
+                <td class="text-success">有効</td>
               <% else %>
-                <h3>退会</h3>
+                <td class="text-muted">退会</td>
               <% end %>
             </td>
           </tr>
