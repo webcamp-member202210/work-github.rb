@@ -1,13 +1,25 @@
+<p id="notice"></p>
 <%= flash[:notice] %>
-<h2>配送先編集</h2>
+<div class="container d-flex mt-4 mb-4">
+  <h4 class="bg-light">配送先編集</h4>
+</div>
 
-<table>
-  <tr>
-  <%= form_with model: @address, url: address_path do |f| %>
-    <th>郵便番号(ハイフンなし)</th><td><%= f.text_field :postal_code %></td>
-    <th>住所</th><td><%= f.text_field :address %></td>
-    <th>宛名</th><td><%= f.text_field :name %></td>
-  </tr>
-</table>
-    <%= f.submit "変更内容を保存" %>
+<div class="ml-5 d-flex">
+  <table class="table table-borderless" style="width: 70%">
+    <%= form_with model: @address, url: address_path do |f| %>
+    <tr>
+      <th style="width: 30%">郵便番号(ハイフンなし)</th><td><%= f.text_field :postal_code %></td>
+    </tr>
+    <tr>
+      <th>住所</th><td><%= f.text_field :address, style: "width: 80%" %></td>
+    </tr>
+    <tr>
+      <th>宛名</th><td><%= f.text_field :name %></td>
+    </tr>
+  </table>
+  <div class="d-flex align-items-end">
+    <%= f.submit "変更内容を保存", class: "btn btn-success" %>
+  </div>
+</div>
+  
   <% end %>
