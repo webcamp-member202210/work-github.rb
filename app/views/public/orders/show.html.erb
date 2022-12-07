@@ -1,68 +1,81 @@
 <p id="notice"></p>
-<div class="container">
-  <h4>注文履歴詳細</h4>
+<div class="container mb-4 pl-4 d-flex">
+  <h4 class="bg-light">注文履歴詳細</h4>
 </div>
 
-<h3>注文情報</h3>
-<table>
-  <tr>
-    <th>注文日</th><td><%= l @order.created_at, format: :short %></td>
-  </tr>
-  <tr>
-    <th>配送先</th><td><%= @order.postal_code %><br><%= @order.address_code %><br><%= @order.name %></td>
-  </tr>
-  <tr>
-    <th>支払方法</th>
-    <td>
-      <% if @order.payment_method == "credit_card" %>
-        クレジットカード
-      <% else %>
-        銀行振込
-      <% end %>
-    </td>
-    <th>ステータス</th>
-    <td>
-      <% if @order.status == "waiting" %>
-        入金待ち
-      <% elsif @order.status == "confirm" %>
-        入金確認
-      <% elsif @order.status == "production" %>
-        製作中
-      <% elsif @order.status == "preparation" %>
-        発送準備中
-      <% else %>
-        発送済み
-      <% end %>
-    </td>
-  </tr>
-</table>
-<h3>請求情報</h3>
-<table>
-  <tr>
-    <tH>商品合計</tH><td><%= @order.bill-@order.postage %></td>
-  </tr>
-  <tr>
-    <th>配送先</th><td><%= @order.postage %></td>
-  </tr>
-  <tr>
-    <th>ご請求額</th><td><%= @order.bill %></td>
-  </tr>
-</table>
+<div class="ml-5 d-flex" style="width:90%">
+  <div style="width: 60%">
+    <h5>注文情報</h5>
 
-<h3>注文内容</h3>
-<table>
-  <tr>
-    <th>商品</th>
-    <th>単価 (税込)</th>
-    <th>個数</th>
-    <th>小計</th>
-  </tr>
-  <% @order.order_details.each do |order_detail| %>
-  <tr>
-    <td><%= order_detail.item.name %></td>
-    <td><%= order_detail.price %></td>
-    <td><%= order_detail.amount %></td>
-    <td><%= order_detail.price*order_detail.amount %></td>
-  </tr>
-  <% end %>
-</table>
+    <table class="table table-bordered">
+      <tr>
+        <th class="bg-light" style="width: 30%">注文日</th><td><%= l @order.created_at, format: :short %></td>
+      </tr>
+      <tr>
+        <th class="bg-light">配送先</th><td><%= @order.postal_code %><br><%= @order.address_code %><br><%= @order.name %></td>
+      </tr>
+      <tr>
+        <th class="bg-light">支払方法</th>
+        <td>
+          <% if @order.payment_method == "credit_card" %>
+            クレジットカード
+          <% else %>
+            銀行振込
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th class="bg-light">ステータス</th>
+        <td>
+          <% if @order.status == "waiting" %>
+            入金待ち
+          <% elsif @order.status == "confirm" %>
+            入金確認
+          <% elsif @order.status == "production" %>
+            製作中
+          <% elsif @order.status == "preparation" %>
+            発送準備中
+          <% else %>
+            発送済み
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="ml-5 d-flex" style="width: 30%">
+    <div style="width: 90%">
+      <h5>請求情報</h5>
+      <table class="table table-bordered">
+        <tr>
+          <th class="bg-light" style="width: 50%">商品合計</tH><td><%= @order.bill-@order.postage %></td>
+        </tr>
+        <tr>
+          <th class="bg-light">配送先</th><td><%= @order.postage %></td>
+        </tr>
+        <tr>
+          <th class="bg-light">ご請求額</th><td><%= @order.bill %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="ml-5" style="width: 70%">
+  <h5>注文内容</h5>
+  <table class="table table-bordered">
+    <tr class="bg-light">
+      <th>商品</th>
+      <th>単価 (税込)</th>
+      <th>個数</th>
+      <th>小計</th>
+    </tr>
+    <% @order.order_details.each do |order_detail| %>
+    <tr>
+      <td><%= order_detail.item.name %></td>
+      <td><%= order_detail.price %></td>
+      <td><%= order_detail.amount %></td>
+      <td><%= order_detail.price*order_detail.amount %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>

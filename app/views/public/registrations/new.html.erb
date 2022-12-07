@@ -9,26 +9,26 @@
 <div class="container mb-5" style="width: 80%">
   <div class="align-items-center justify-content-center">
     <div class="row">
-      <table>
+      <table class="table table-borderless">
         <tr>
-          <th style"width: 30%">名前</th>
-          <td>
-            <%= f.label :last_name, "(姓)" %>
+          <th style="width: 30%">名前</th>
+          <td style="width: 10%">
+            <%= f.label :last_name, "(姓)　", class: "mr-3 ml-4" %>
           </td>
-          <td>
-            <%= f.text_field :last_name, autofocus: true, autocomplete: "name" %>　　
-            <%= f.label :first_name, "(名)" %>　
+          <td class="d-flex" style="width: 60%">
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "name" %>
+            <%= f.label :first_name, "(名)　", class: "mr-3 ml-4" %>
             <%= f.text_field :first_name %>
           </td>
         </tr>
         <tr>
           <th>フリガナ</th>
           <td>
-            <%= f.label :last_name_kana, "(セイ)" %>
+            <%= f.label :last_name_kana, "(セイ)", class: "mr-3 ml-4" %>
           </td>
-          <td>
-            <%= f.text_field :last_name_kana %>　　
-            <%= f.label :first_name_kana, "(メイ)" %>
+          <td class="d-flex">
+            <%= f.text_field :last_name_kana %>
+            <%= f.label :first_name_kana, "(メイ)", class: "mr-3 ml-4" %>
             <%= f.text_field :first_name_kana %>
           </td>
         </tr>
