@@ -1,38 +1,32 @@
-<table>
-  <thead>
-    <tr>
-      <th>ジャンル検索</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-    <% @genres.each do |genre| %>
-      <td>
-      <%= link_to items_path do %>
-        <%= genre.name %>
+<p id="notice"></p>
+<div class="container mt-5">
+  <di class="d-flex align-items-center justify-content-center"  style="height: 250px">
+    <h5>
+      ようこそ、ながのCAKEへ！<br>
+      このサイトは、ケーキ販売のECサイトになります。<br>
+      会員でない方も商品の閲覧はできますが、<br>
+      購入には会員登録が必要になります。
+    </h5>
+  </di>
+</div>
+
+<div class="container pl-5">
+  <h3>新着商品</h3>
+</div>
+
+<div class="container d-flex">
+  <% @items.each do |item| %>
+  <div class="container">
+    <div>
+      <%= link_to item_path(item.id) do %>
+        <%= image_tag item.image, size: "150x100" %>
       <% end %>
-      </td>
-    <% end %>
-    </tr>
-  </tbody>
-</table>
-
-<h2>
-  ようこそ、ながのCAKEへ！<br>
-  このサイトは、ケーキ販売のECサイトになります。<br>
-  会員でない方も商品の閲覧はできますが、<br>
-  購入には会員登録が必要になります。
-</h2>
-
-<h2>新着商品</h2>
-
-
-<% @items.each do |item| %>
-  <div>
-    <%= link_to item_path(item.id) do %>
-      <%= image_tag item.image %>
-    <% end %>
+    </div>
+    <h5><%= item.name %></h5>
+    <h5>¥<%= item.price.to_s(:delimited) %></h5>
   </div>
-  <h2><%= item.name %></h2>
-  <h2><%= item.price.to_s(:delimited) %></h2>
-<% end %>
+  <% end %>
+</div>
+<div class="container  text-right">
+  <%= link_to "全ての商品を見る>", items_path %>
+</div>

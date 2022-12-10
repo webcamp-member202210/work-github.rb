@@ -47,4 +47,13 @@ ja:
       short: "%Y/%m/%d"
 
 
+  errors:
+    messages:
+      not_saved:
+        other: "%{count}件のエラーが発生しました"
+        
+  registrations:
+    signed_up: "アカウントの登録が完了しました"
+    
+
 

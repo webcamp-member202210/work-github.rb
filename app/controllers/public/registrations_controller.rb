@@ -3,6 +3,11 @@
 class Public::RegistrationsController < Devise::RegistrationsController
   
   before_action :customer_params, only: [:create]
+  
+  def after_sign_up_path_for(resource)
+    flash[:notice] = "アカウント登録が完了しました"
+    customer_show_path
+  end
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
