@@ -4,8 +4,8 @@
 </div>
 
 <div class="ml-5 mt-5" style="width: 80%">
+  <%= form_with model: @customer, url: update_customer_path, method: :patch do |f| %>
   <table>
-    <%= form_with model: @customer, url: update_customer_path, method: :patch do |f| %>
     <tr>
       <th style="width: 30%">氏名</th>
       <td><%= f.text_field :last_name %>　<%= f.text_field :first_name %></td>
@@ -37,6 +37,6 @@
         <%= link_to "退会する", customers_unsubscribe_path, class: "btn btn-danger" %>
       </td>
     </tr>
-    <% end %>
   </table>
+  <% end %>
 </div>
